@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/ET_Email"
+        android:layout_width="match_parent"
+        android:maxLines="1"
+        android:layout_height="wrap_content"
+        android:hint="Email" />
+
+    <EditText
+        android:id="@+id/ET_Pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ET_Email"
+        android:maxLines="1"
+        android:hint="Пароль" />
+    <EditText
+        android:id="@+id/ET_name"
+        android:layout_below="@id/ET_Pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Фамилия"
+        android:maxLines="1"
+        />
+    <EditText
+        android:id="@+id/ET_surname"
+        android:layout_below="@id/ET_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Имя"
+        android:maxLines="1"
+        />
+    <EditText
+        android:id="@+id/ET_patronymic"
+        android:layout_below="@id/ET_surname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Отчество"
+        android:maxLines="1"
+        />
+
+    <LinearLayout
+        android:id="@+id/spin_and_date"
+        android:layout_below="@id/ET_patronymic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="Дата рождения"
+            android:textStyle="bold"
+            android:layout_height="wrap_content" />
+    <Spinner
+        android:id="@+id/spin_status"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ET_patronymic"
+        android:entries="@array/socstatus"
+        >
+    </Spinner>
+    </LinearLayout>
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:id="@+id/btn_sign_up"
+        android:enabled="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spin_and_date"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:text="регистрация" />
+
+    <ProgressBar
+        android:id="@+id/signup_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="invisible"/>
+
+</RelativeLayout>
