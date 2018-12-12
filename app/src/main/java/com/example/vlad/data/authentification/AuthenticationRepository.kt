@@ -1,4 +1,4 @@
-package com.example.vlad.data
+package com.example.vlad.data.authentification
 
 import com.example.vlad.network.AuthAction
 import io.reactivex.subjects.PublishSubject

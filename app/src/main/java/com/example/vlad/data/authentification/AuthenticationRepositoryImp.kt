@@ -1,12 +1,13 @@
-package com.example.vlad.data
+package com.example.vlad.data.authentification
 
 import android.util.Log
-import com.example.vlad.data.AuthenticationRepository
+import com.example.vlad.data.authentification.AuthenticationRepository
 import com.example.vlad.network.AuthAction
 import com.example.vlad.network.FirebaseAuthentication
 import io.reactivex.subjects.PublishSubject
+import javax.inject.Inject
 
-class AuthenticationRepositoryImp(private val firebaseAuth: FirebaseAuthentication) : AuthenticationRepository {
+class AuthenticationRepositoryImp @Inject constructor(private val firebaseAuth: FirebaseAuthentication) : AuthenticationRepository {
     override fun insertPatientToDb() {
         Log.d("INSERTPATIENT","INSERTED")
     }

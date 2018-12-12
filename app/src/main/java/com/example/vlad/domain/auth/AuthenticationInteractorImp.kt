@@ -2,7 +2,7 @@ package com.example.vlad.domain.auth
 
 import android.content.ContentValues
 import android.util.Log
-import com.example.vlad.data.AuthenticationRepositoryImp
+import com.example.vlad.data.authentification.AuthenticationRepositoryImp
 import com.example.vlad.db.DbHelper
 import com.example.vlad.network.AuthAction
 import com.google.firebase.database.DataSnapshot
@@ -12,13 +12,17 @@ import com.google.firebase.database.ValueEventListener
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
-class AuthenticationInteractorImp @Inject constructor(private val repository: AuthenticationRepositoryImp,private val dbHelper: DbHelper) : AuthenticationInteractor {
+class AuthenticationInteractorImp @Inject constructor(private val repository: AuthenticationRepositoryImp, private val dbHelper: DbHelper) : AuthenticationInteractor {
     override fun signUp(email: String, pass: String, surname: String, name: String, patronymic: String, idsocial: Int, date: String) {
         patientSubject.onNext(PatientEntity(email, surname, name, patronymic, idsocial, date))
         repository.signUp(email, pass)
     }
+    val subjectInsertAction = PublishSubject.create<AuthAction>()
     val patientSubject = PublishSubject.create<PatientEntity>()
     lateinit var subject: PublishSubject<AuthAction>
+    fun subscribeToInsertDb():PublishSubject<AuthAction>{
+        return subjectInsertAction
+    }
     fun subscribeToSignUp(): PublishSubject<AuthAction> {
         var patientEntity:PatientEntity?=null
         patientSubject.subscribe{
@@ -42,6 +46,7 @@ class AuthenticationInteractorImp @Inject constructor(private val repository: Au
     }
 
     fun insertToDb(patientEntity: PatientEntity?) {
+        Log.d("INSERTTODB","INSERTED TO DB")
         val db = dbHelper.writableDatabase
         val contentValues = ContentValues()
         val database = FirebaseDatabase.getInstance()
@@ -50,6 +55,9 @@ class AuthenticationInteractorImp @Inject constructor(private val repository: Au
         Log.d("DATEMYBIRTH", patientEntity.date)
         searchReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
+                subjectInsertAction.onNext(AuthAction.SUCCESSFUL)
+                contentValues.clear()
+                Log.d("INCHANGE",patientEntity.email)
                 contentValues.put("uid",p0.child("uid").value.toString())
                 contentValues.put("surname",patientEntity.surname)
                 contentValues.put("name",patientEntity.name)

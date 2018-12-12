@@ -1,48 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#005261"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/polic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
+        android:text="Поликлиника"
+android:textColor="#fff"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/ET_Email_Sign_In"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/polic"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/sircle"
+        android:inputType="textEmailAddress"
         android:hint="Email"
-        />
+        android:paddingLeft="15dp" />
+
     <EditText
-        android:layout_below="@id/ET_Email_Sign_In"
         android:id="@+id/ET_Pass_Sign_In"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/ET_Email_Sign_In"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/sircle"
         android:hint="password"
-        />
+        android:inputType="textPassword"
+        android:paddingLeft="15dp" />
+
     <LinearLayout
-        android:layout_below="@id/ET_Pass_Sign_In"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/ET_Pass_Sign_In"
+        android:layout_marginTop="30dp"
         android:orientation="horizontal">
+
         <Button
-            android:enabled="false"
             android:id="@+id/btn_sign_in"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Авторизация"
-            />
+            android:enabled="false"
+            android:text="Авторизация" />
+
         <Button
             android:id="@+id/btnSign_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="регистрация"/>
+            android:text="регистрация" />
     </LinearLayout>
+
     <ProgressBar
         android:id="@+id/signin_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:visibility="invisible"/>
+        android:layout_centerVertical="true"
+        android:visibility="invisible" />
 
 </RelativeLayout>

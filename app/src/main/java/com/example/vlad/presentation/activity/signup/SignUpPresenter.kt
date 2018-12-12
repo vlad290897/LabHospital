@@ -16,8 +16,8 @@ class SignUpPresenter @Inject constructor(private val authenticationInteractorIm
     }
 
     fun onStart() {
-        val subscription = authenticationInteractorImp.subscribeToSignUp()
-        subscription.subscribe { t: AuthAction? ->
+        val subscriptionToSignUp = authenticationInteractorImp.subscribeToSignUp()
+        subscriptionToSignUp.subscribe { t: AuthAction? ->
             Log.d("TAG", t.toString())
             if (t == AuthAction.SUCCESSFUL) {
                 viewState.showMainActivity()

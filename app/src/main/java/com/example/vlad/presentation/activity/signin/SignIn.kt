@@ -1,6 +1,5 @@
 package com.example.vlad.presentation.activity.signin
 
-import android.content.ContentValues
 import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
@@ -13,9 +12,11 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.vlad.DI.AmbulanceApp
 import com.example.vlad.R
 import com.example.vlad.db.DbHelper
+import com.example.vlad.network.FirebaseAuthentication
 import com.example.vlad.presentation.activity.common.EditTexObservable
 import com.example.vlad.presentation.activity.main.MainActivity
 import com.example.vlad.presentation.activity.signup.SignUp
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
@@ -58,30 +59,19 @@ class SignIn : MvpAppCompatActivity(), SignInView {
         val dbHelper = DbHelper(this)
         val sqLiteDatabase = dbHelper.writableDatabase
 
-        val projection = arrayOf<String>("uid", "surname", "name", "patronymic", "idqualif","idspecial")
-        var cursor: Cursor? = null
-        cursor = sqLiteDatabase.query("doctor",projection,null,null,null,null,null)
-        val uidColumnIndex = cursor.getColumnIndex("uid")
-        val nameColumnIndex = cursor.getColumnIndex("name")
-        val specialColumnIndex = cursor.getColumnIndex("idspecial")
-        while (cursor.moveToNext()){
-            Log.d("DOCTOR",cursor.getString(uidColumnIndex)+cursor.getString(nameColumnIndex)+cursor.getString(specialColumnIndex))
 
-        }
 
+        val table = "diagnosis"
+        val columns = arrayOf("id","name")
+       val cursor = sqLiteDatabase.query(table,columns,null,null,null,null,null)
+        val idColumnIndex = cursor.getColumnIndex("id")
+       val nameColumnIndex = cursor.getColumnIndex("name")
+        while (cursor.moveToNext()) {
+          Log.d("CARDREP", cursor.getString(idColumnIndex) + cursor.getString(nameColumnIndex))
+       }
 //        val table = "patient as PT inner join status as ST on PT.idsocial = ST.id"
 //        val columns = arrayOf("PT.name as Name", "ST.name as Status")
-//        cursor = sqLiteDatabase.query(table, columns, null, null, null, null, null);
-//        val uidColumnIndex = cursor.getColumnIndex("Name")
-//        val socialColumnIndex = cursor.getColumnIndex("Status")
-//        while (cursor.moveToNext()) {
-//            val currentUid = cursor.getString(uidColumnIndex)
-            //      val currentSurname = cursor.getString(surnameColumnIndex)
-            //        val currentName = cursor.getString(nameColumnIndex)
-//           val currentPatronymic = cursor.getString(patronymicColumnIndex)
-            //         val currentDate = cursor.getString(dateColumnIndex)
-//            val currentSocial = cursor.getString(socialColumnIndex)
-//            Log.d("MYCURSOR", currentUid + currentSocial)
+
 //        }
 //        val cursor = sqLiteDatabase.query("patient",projection,null,null,null,null,null)
 //try{

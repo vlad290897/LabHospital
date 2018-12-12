@@ -5,14 +5,13 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-import com.example.vlad.data.Patient
-import java.util.ArrayList
+import com.example.vlad.db.storage.DoctorStorage
 
 class DbHelper(context: Context) : SQLiteOpenHelper(context, "polyclinic", null, 1) {
     val contentValues = ContentValues()
     override fun onCreate(db: SQLiteDatabase?) {
         Log.d("DBINSERT", "DATABASE CREATED")
-                //ПАЦИЕНТЫ
+        //ПАЦИЕНТЫ
         db?.execSQL("create table status ("
                 + "id integer primary key, "
                 + "name text"
@@ -24,7 +23,7 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, "polyclinic", null,
                 + "patronymic text not null, "
                 + "dateofbirth text, "
                 + "idsocial integer"//id социального статуса
-                +");")
+                + ");")
         //ВРАЧИ
         db?.execSQL("create table qualification ("
                 + "id integer primary key, "
@@ -41,8 +40,28 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, "polyclinic", null,
                 + "patronymic text not null, "
                 + "idqualif integer, "//id квалификации статуса
                 + "idspecial integer"//id специализации статуса
-                +");")
-
+                + ");")
+        //ЗАПИСИ
+        db?.execSQL("create table entries ("
+                + "id integer primary key, "
+                + "doctorid text, "
+                + "patientid text"
+                + ");")
+        //КАРТОЧКА ПАЦИЕНТА
+        db?.execSQL("create table diagnosis ("
+                + "id text primary key, "
+                + "name text, "
+                + "ambulat text, "
+                + "dispuchet text, "
+                + "srokpoter text"
+                + ");")
+        db?.execSQL("create table patientcard ("
+                + "patientid text primary key, "
+                + "begindate text, "
+                + "enddate text, "
+                + "doctorid text, "
+                + "diagnosisid text"
+                + ");")
 
         val statusId = arrayOf(0, 1, 2, 3, 4)
         val statusName: Array<String> = arrayOf("Учащийся", "Работающий", "Временно неработающий", "Инвалид", "Пенсионер")
@@ -70,14 +89,18 @@ class DbHelper(context: Context) : SQLiteOpenHelper(context, "polyclinic", null,
             contentValues.put("name", qualificationName[id])
             db?.insert("qualification", null, contentValues)
         }
-        contentValues.clear()
-        contentValues.put("uid", "myID")
-        contentValues.put("surname", "Челядинов")
-        contentValues.put("name", "Иван")
-        contentValues.put("patronymic", "Челядинов")
-        contentValues.put("idqualif", 1)
-        contentValues.put("idspecial", 1)
-        db?.insert("doctor", null, contentValues)
+        val doctors = DoctorStorage.getDoctors()
+
+        for (doctor in doctors) {
+            contentValues.clear()
+            contentValues.put("uid", doctor.uid)
+            contentValues.put("surname", doctor.surname)
+            contentValues.put("name", doctor.name)
+            contentValues.put("patronymic", doctor.patronymic)
+            contentValues.put("idqualif", doctor.qualification)
+            contentValues.put("idspecial", doctor.specialization)
+            db?.insert("doctor", null, contentValues)
+        }
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

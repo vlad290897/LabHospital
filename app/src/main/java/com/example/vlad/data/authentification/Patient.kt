@@ -1,4 +1,4 @@
-package com.example.vlad.data
+package com.example.vlad.data.authentification
 
 data class Patient(val uid:String,
                    val surname:String,

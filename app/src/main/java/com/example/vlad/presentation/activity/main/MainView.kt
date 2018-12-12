@@ -6,5 +6,5 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface MainView:MvpView {
-    fun showMainScreen()
+    fun showUserInfoIntoNavHeader(name:String,surname:String,patronymic:String,date:String,socialStatus:String)
 }

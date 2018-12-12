@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/addcard_email"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/sircle"
+        android:hint="Email"
+        android:paddingLeft="15dp" />
+
+    <EditText
+        android:id="@+id/addcard_surname"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/sircle"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюя
+АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+        android:hint="Фамилия"
+        android:inputType="text"
+        android:paddingLeft="15dp" />
+
+    <EditText
+        android:id="@+id/addcard_name"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/sircle"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюя
+АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+        android:hint="Имя"
+        android:inputType="text"
+        android:paddingLeft="15dp" />
+
+    <EditText
+        android:id="@+id/addcard_patronymic"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/sircle"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюя
+АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+        android:hint="Отчество"
+        android:inputType="text"
+        android:paddingLeft="15dp" />
+
+    <Spinner
+        android:id="@+id/social_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:entries="@array/socstatus"></Spinner>
+
+    <EditText
+        android:id="@+id/addcard_dateOfBirth"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/sircle"
+        android:digits="123456789./"
+        android:hint="Дата рождения пациента"
+        android:inputType="text"
+        android:paddingLeft="15dp" />
+
+    <EditText
+        android:id="@+id/addcard_diagnosis"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/sircle"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюя
+АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+        android:hint="Диагноз"
+        android:inputType="text"
+        android:paddingLeft="15dp" />
+
+    <EditText
+        android:id="@+id/addcard_sroktrudosposob"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/sircle"
+        android:hint="Срок потери трудоспособности"
+        android:inputType="number"
+        android:paddingLeft="15dp" />
+
+    <EditText
+        android:id="@+id/addcard_begin"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/sircle"
+        android:digits="123456789./"
+        android:hint="Дата начала лечения"
+        android:inputType="text"
+        android:paddingLeft="15dp" />
+
+
+    <EditText
+        android:id="@+id/addcard_end"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/sircle"
+        android:digits="123456789./"
+        android:hint="Дата окончания лечения"
+        android:inputType="text"
+        android:paddingLeft="15dp" />
+
+    <Switch
+        android:id="@+id/dispanser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Состоит ли на диспансерном учете"
+        android:textColor="#fff" />
+
+    <Switch
+        android:id="@+id/ambulator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Необходимо ли амбулаторное лечение"
+        android:textColor="#ffff" />
+
+
+    <Button
+        android:id="@+id/addcard_createDiagnosis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="Поставить диагноз" />
+
+
+</LinearLayout>
